@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My webpage</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/images.jpeg">
+</head>
+<body>
+    <header>
+        <nav>
+            <a id="openLoginModal" class="login" href="#">
+               <img src="images/user-regular-24 (2).png" alt="Placeholder Image">
+            </a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="about.html" >About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <footer>
+        <p>&copy; 2023 My Webpage. All rights reserved.</p>
+    </footer>
+    <!-- Modal Login Form -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeLoginModal">&times;</span>
+    <h2>Login</h2>
+    <form action="login.php" method="POST">
+      <div class="input-box">
+        <label>Email</label>
+        <input type="email" required />
+      </div>
+      <div class="input-box">
+        <label>Password</label>
+        <input type="password" required />
+      </div>
+      <div class="remember-forgot">
+        <label><input type="checkbox" /> Remember me</label>
+        <a href="#">Forgot Password?</a>
+      </div>
+      <button type="submit" class="btn">Login</button>
+    </form>
+  </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
