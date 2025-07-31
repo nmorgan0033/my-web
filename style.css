@@ -51,7 +51,7 @@ ul a[aria-current="page"] {
     background: #001133;
     color: #fff;
 }
-a {
+a { 
     text-decoration: none;
     color: inherit; /* Keeps link color same as parent */
 }
@@ -66,17 +66,24 @@ a {
     background: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 20px;
+    margin-top: 0;
+    padding-top: 0;
+    /*padding: 20px;*/
     margin-bottom: 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 .blog article img {
+    display: block;
+    margin-top: 0;
+    margin-bottom: 1em; /* adjust as needed */
+    width: 100%; /* optional: makes image fill card width */
+    border-radius: 8px 8px 0 0; /* optional: rounded top corners */
     width: 100%;
     height: 100%;
-    border-radius: 8px;
+    /*border-radius: 8px;*/
     object-fit: cover;
     display: block;
-    margin: 0 auto 12px; /* Center the image and add bottom margin */
+    /*margin: 0 auto 12px; /* Center the image and add bottom margin */
     max-width: 100%; /* Ensure the image does not overflow */
     max-height: 200px; /* Limit the height of the image */
     object-fit: cover; /* Maintain aspect ratio */
@@ -120,70 +127,100 @@ a {
 /* ...existing code... */
 .testimonials {
     background: #f0f0f0;
-    padding: 20px;
+    padding: 40px 20px;
     border-radius: 8px;
-    margin: 20px auto;
+    margin: 40px auto;
     text-align: center;
+    max-width: 1200px;
 }
 .testimonial-slider {
     position: relative;
-    max-width: 600px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    margin: auto;
 }
 .testimonial-slidesContainer {
     display: flex;
-    overflow: hidden;
+    transition: transform 0.5s ease-in-out;
     width: 100%;
     scroll-behavior: smooth;
 }
 .testimonial-slidesContainer > div {
     min-width: 100%;
     box-sizing: border-box;
-    transition: transform 0.4s;
-    padding: 20px;
-    background: #f0f0f0;
-    border-radius: 8px;
-    margin: 0 8px;
+    padding: 20px 30px;
+    flex-shrink: 0;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.6;
+}
+.testimonial-slidesContainer > div p {
+max-width: 800px;
+margin: 10px auto 0;
+white-space: normal;
+font-size: 1rem;
+color: #333;
+}
+.testimonial-img {
+width: 100px;
+height: 100px;
+object-fit: cover;
+border-radius: 50%;
+margin: 0 auto 15px;
+display: block;
+border: 3px solid #002255;
 }
 .arrow {
-    background: #002255;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 2;
-    transition: background 0.2s;
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+background: #002255;
+color: #fff;
+border: none;
+padding: 10px;
+cursor: pointer;
+z-index: 10;
+font-size: 18px;
+border-radius: 50%;
+transition: background 0.2s;
 }
 .arrow:hover {
     background: #001133;
 }
+.arrow.left {
+left: 10px;
+}
+
+.arrow.right {
+right: 10px;
+}
 .testimonial-indicators {
     display: flex;
     justify-content: center;
-    margin-top: 12px;
-    gap: 8px;
+    margin-top: 20px;
 }
 .testimonial-indicators .dot {
-    width: 12px;
     height: 12px;
+    width: 12px;
+    margin: 0 5px;
+    background-color: #bbb;
     border-radius: 50%;
-    background: #bbb;
+    display: inline-block;
+    transition: background-color 0.3s ease;
     cursor: pointer;
-    transition: background 0.2s;
 }
 .testimonial-indicators .dot.active {
     background: #002255;
 }
 .testimonial-img {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    margin-right: 20px;
+    object-fit: cover;
+    margin: 0 auto 15px;
+    display: block;
+    border: 3px solid #002255;
 }
 .cards-container{
     display: flex;
