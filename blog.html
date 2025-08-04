@@ -28,17 +28,26 @@
         <article>
             <a href="post.html">
             <img src="images/barista-training-coffee-shop-business.jpg.webp" alt="Blog Image 1">
+             <div class="badge">
+                <b>Lorem ipsum dolor</b>
+            </div>
             <h3>Blog Post Title 1</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec nisi facilisis aliquet.</p>
             </a>
         </article>
         <article>
             <img src="images/Coffee-Education-Programmes-1.jpg.webp" alt="Blog Image 2">
+            <div class="badge">
+                <b>Lorem ipsum dolor</b>
+            </div>
             <h3>Blog Post Title 2</h3>
             <p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.</p>
         </article>
         <article>
             <img src="images/studying-with-coffee-stockcake.jpg" alt="Blog Image 3">
+             <div class="badge">
+                <b>Lorem ipsum dolor</b>
+            </div>
             <h3>Blog Post Title 3</h3>
             <p>Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.</p>
         </article>
@@ -46,17 +55,26 @@
         <article>
             <a href="post.html">
             <img src="images/barista-training-coffee-shop-business.jpg.webp" alt="Blog Image 1">
+             <div class="badge">
+                <b>Lorem ipsum dolor</b>
+            </div>
             <h3>Blog Post Title 1</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec nisi facilisis aliquet.</p>
             </a>
         </article>
         <article>
             <img src="images/Coffee-Education-Programmes-1.jpg.webp" alt="Blog Image 2">
+             <div class="badge">
+                <b>Lorem ipsum dolor</b>
+            </div>
             <h3>Blog Post Title 2</h3>
             <p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.</p>
         </article>
         <article>
             <img src="images/studying-with-coffee-stockcake.jpg" alt="Blog Image 3">
+             <div class="badge">
+                <b>Lorem ipsum dolor</b>
+            </div>
             <h3>Blog Post Title 3</h3>
             <p>Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.</p>
         </article>
@@ -64,17 +82,26 @@
         <article>
             <a href="post.html">
             <img src="images/barista-training-coffee-shop-business.jpg.webp" alt="Blog Image 1">
+             <div class="badge">
+                <b>Lorem ipsum dolor</b>
+            </div>
             <h3>Blog Post Title 1</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec nisi facilisis aliquet.</p>
             </a>
         </article>
         <article>
             <img src="images/Coffee-Education-Programmes-1.jpg.webp" alt="Blog Image 2">
+             <div class="badge">
+                <b>Lorem ipsum dolor</b>
+            </div>
             <h3>Blog Post Title 2</h3>
             <p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.</p>
         </article>
         <article>
             <img src="images/studying-with-coffee-stockcake.jpg" alt="Blog Image 3">
+             <div class="badge">
+                <b>Lorem ipsum dolor</b>
+            </div>
             <h3>Blog Post Title 3</h3>
             <p>Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.</p>
         </article>
@@ -87,27 +114,73 @@
         <p>&copy; 2023 My Webpage. All rights reserved.</p>
     </footer>
     <!-- Modal Login Form -->
-<div id="loginModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="closeLoginModal">&times;</span>
-    <h2>Login</h2>
-    <form action="login.php" method="POST">
-      <div class="input-box">
-        <label>Email</label>
-        <input type="email" required />
-      </div>
-      <div class="input-box">
-        <label>Password</label>
-        <input type="password" required />
-      </div>
-      <div class="remember-forgot">
-        <label><input type="checkbox" /> Remember me</label>
-        <a href="#">Forgot Password?</a>
-      </div>
-      <button type="submit" class="btn">Login</button>
-    </form>
-  </div>
-</div>
+        
+    <div id="loginModal" class="modal">
+
+    <div class="wrapper">
+
+        <div class="modal-content">
+
+
+        <span class="icon-close" id="closeLoginModal">&times;</span>
+
+            <div class='form-box login'>
+                <h2>Login</h2>
+                <form action='login.php' method='post'>
+                <div class='input-box'>
+                    <span class='icon'><img src="images/Icons/envelope-solid-24.png" alt="email" /></span>
+                    <input type='email' name="email" id="email" required />
+                    <label for="email" >Email</label>
+                </div>
+                <div class='input-box'>
+                    <span class='icon'><img src="images/Icons/lock-alt-solid-24.png" alt="lock" /></span>
+                    <input type='password' name="password" id="password" required />
+                    <label for="password">Password</label>
+                </div>
+                <div class='remember-forgot'>
+                    <label><input type='checkbox' /> Remember me</label>
+                    <a href='#'>Forgot Password?</a>
+                </div>
+                <button type='submit' class='btn'>Login</button>
+                <div class='login-register'>
+                    <p>Don't have an account? <a href='#' class='register-link'>Register</a></p>
+                </div>
+                </form>
+            </div>
+
+            <div class='form-box register'>
+                <h2>Registration</h2>
+                <form action='#'>
+                <div class='input-box'>
+                    <span class='icon'><img src="images/Icons/user-solid-24.png" alt="user" /></span>
+                    <input type='text' required />
+                    <label>Username</label>
+                </div>
+                <div class='input-box'>
+                    <span class='icon'><img src="images/Icons/envelope-solid-24.png" alt="email" /></span>
+                    <input type='email' required />
+                    <label>Email</label>
+                </div>
+                <div class='input-box'>
+                    <span class='icon'><img src="images/Icons/lock-alt-solid-24.png" alt="lock" /></span>
+                    <input type='password' required />
+                    <label>Password</label>
+                </div>
+                <div className='remember-forgot'>
+                    <label><input type='checkbox' /> I agree to the terms & conditions</label>
+                </div>
+                <button type='submit' class='btn'>Register</button>
+                <div class='login-register'>
+                    <p>Already have an account? <a href='#' class='login-link'>Login</a></p>
+                </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

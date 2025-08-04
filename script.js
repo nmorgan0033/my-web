@@ -20,6 +20,80 @@ window.onclick = function(event) {
     }
 };
 
+document.querySelectorAll('.login-btn').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('loginModal').style.display = 'block';
+    document.querySelector('.wrapper').classList.add('active-popup');
+  });
+});
+
+
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) { // adjust threshold as needed
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+
+
+const wrapper = document.querySelector('.wrapper');
+const loginLink = document.querySelector('.login-link');
+const registerLink = document.querySelector('.register-link');
+const btnPopup = document.querySelector('.login');
+
+registerLink.addEventListener('click', ()=> {
+    wrapper.classList.add('active');
+});
+
+loginLink.addEventListener('click', ()=> {
+    wrapper.classList.remove('active');
+});
+
+btnPopup.addEventListener('click', ()=> {
+    wrapper.classList.add('active-popup');
+});
+
+
+function toggleMenu() {
+    const menu = document.querySelector('.menu-links');
+    const icon = document.querySelector('.hamburger-icon');
+    menu.classList.toggle("open");
+    icon.classList.toggle("open");
+};
+
+
+
+
+
+
+// Open modal on any .login-btn click
+document.querySelectorAll('.login-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('loginModal').style.display = 'block';
+        document.querySelector('.wrapper').classList.add('active-popup');
+    });
+});
+
+// Close modal on close button
+document.getElementById('closeLoginModal').onclick = function() {
+    document.getElementById('loginModal').style.display = 'none';
+    document.querySelector('.wrapper').classList.remove('active-popup');
+};
+
+// Close modal when clicking outside the modal box
+window.onclick = function(event) {
+    const modal = document.getElementById('loginModal');
+    const wrapper = document.querySelector('.wrapper');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+        wrapper.classList.remove('active-popup');
+    }
+};
 
 /*...existing code...
 document.addEventListener("DOMContentLoaded", function () {

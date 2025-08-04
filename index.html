@@ -5,44 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My webpage</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mediaqueries.css">
     <link rel="icon" href="images/images.jpeg">
 </head>
 <body>
-    <header>
-        <nav>
-            <a id="openLoginModal" class="login" href="#">
-               <img src="images/user-regular-24 (2).png" alt="Placeholder Image">
-            </a>
-            <a href="index.html" class="logo">
+    <header class="home">
+            <!-- DESKTOP MENU -->
+            <nav id="desktop-nav">
+                <a id="openLoginModal" class="login login-btn" href="#">
+                <img src="images/user-regular-24 (2).png" alt="Placeholder Image">
+                </a>
+                <a href="index.html" class="logo">
+                    <h2></h2>
+                </a>
+            
+
+            
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- HAMBURGER MENU -->
+            <nav id="hamburger-nav">
+                <a id="openLoginModal" class="login login-btn" href="#">
+                <img src="images/user-regular-24 (2).png" alt="Placeholder Image">
+                </a>
+
+                <a href="index.html" class="logo">
                 <h2></h2>
-            </a>
-            <ul>
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+                </a>
+
+                <div class="hamburger-menu">
+                        <div class="hamburger-icon" onclick="toggleMenu()">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                
+
+                
+                    
+
+                        <div class="menu-links">
+                            <li><a href="#" class="active" onclick="toggleMenu()">Home</a></li>
+                            <li><a href="blog.html" onclick="toggleMenu()">Blog</a></li>
+                            <li><a href="about.html" onclick="toggleMenu()">About</a></li>
+                            <li><a href="contact.html" onclick="toggleMenu()">Contact</a></li>
+                        </div>
+                    
+                </div>
+
+                
+            </nav>
+    </header>
+
+    <!--HERO SECTION-->
+    <section class="hero">
         <h1>Welcome to My Webpage</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, quis itaque nobis libero quam architecto iste voluptatem quos, amet asperiores distinctio eveniet adipisci quisquam tempore explicabo mollitia ratione? Facilis, optio?</p>
-    </header>
+    </section>
     <!-- BLOG -->
     <section class="blog">
         <h2>Latest Blog Posts</h2>
         <article>
             <a href="post.html">
             <img src="images/barista-training-coffee-shop-business.jpg.webp" alt="Blog Image 1">
+             <div class="badge">
+                <b>Lorem ipsum dolor</b>
+            </div>
             <h3>Blog Post Title 1</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at erat nec nisi facilisis aliquet.</p>
             </a>
         </article>
         <article>
             <img src="images/Coffee-Education-Programmes-1.jpg.webp" alt="Blog Image 2">
+             <div class="badge">
+                <b>Lorem ipsum dolor</b>
+            </div>
             <h3>Blog Post Title 2</h3>
             <p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.</p>
         </article>
         <article>
             <img src="images/studying-with-coffee-stockcake.jpg" alt="Blog Image 3">
+             <div class="badge">
+                <b>Lorem ipsum dolor</b>
+            </div>
             <h3>Blog Post Title 3</h3>
             <p>Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.</p>
         </article>
@@ -118,7 +169,7 @@
 
     <div class="cards-container">
         <a href="about.html">
-        <section class="about">
+        <section class="about-card">
             <img src="images/handsome-black-man-staring-serious-face-expression-portrait-92169636.jpg.webp" alt="About Image">
             <h2>About Me</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.</p>
@@ -145,6 +196,7 @@
         <p>&copy; 2023 My Webpage. All rights reserved.</p>
     </footer>
     <!-- Modal Login Form -->
+<!--
 <div id="loginModal" class="modal">
   <div class="modal-content">
     <span class="close" id="closeLoginModal">&times;</span>
@@ -166,6 +218,78 @@
     </form>
   </div>
 </div>
+-->
+
+
+
+
+
+<div id="loginModal" class="modal">
+
+  <div class="wrapper">
+
+    <div class="modal-content">
+
+
+     <span class="icon-close" id="closeLoginModal">&times;</span>
+
+          <div class='form-box login'>
+            <h2>Login</h2>
+            <form action='login.php' method='post'>
+              <div class='input-box'>
+                <span class='icon'><img src="images/Icons/envelope-solid-24.png" alt="email" /></span>
+                <input type='email' name="email" id="email" required />
+                <label for="email" >Email</label>
+              </div>
+              <div class='input-box'>
+                <span class='icon'><img src="images/Icons/lock-alt-solid-24.png" alt="lock" /></span>
+                <input type='password' name="password" id="password" required />
+                <label for="password">Password</label>
+              </div>
+              <div class='remember-forgot'>
+                <label><input type='checkbox' /> Remember me</label>
+                <a href='#'>Forgot Password?</a>
+              </div>
+              <button type='submit' class='btn'>Login</button>
+              <div class='login-register'>
+                <p>Don't have an account? <a href='#' class='register-link'>Register</a></p>
+              </div>
+            </form>
+          </div>
+
+          <div class='form-box register'>
+            <h2>Registration</h2>
+            <form action='#'>
+              <div class='input-box'>
+                <span class='icon'><img src="images/Icons/user-solid-24.png" alt="user" /></span>
+                <input type='text' required />
+                <label>Username</label>
+              </div>
+              <div class='input-box'>
+                <span class='icon'><img src="images/Icons/envelope-solid-24.png" alt="email" /></span>
+                <input type='email' required />
+                <label>Email</label>
+              </div>
+              <div class='input-box'>
+                <span class='icon'><img src="images/Icons/lock-alt-solid-24.png" alt="lock" /></span>
+                <input type='password' required />
+                <label>Password</label>
+              </div>
+              <div className='remember-forgot'>
+                <label><input type='checkbox' /> I agree to the terms & conditions</label>
+              </div>
+              <button type='submit' class='btn'>Register</button>
+              <div class='login-register'>
+                <p>Already have an account? <a href='#' class='login-link'>Login</a></p>
+              </div>
+            </form>
+          </div>
+
+    </div>
+
+ </div>
+</div>
+
     <script src="script.js"></script>
 </body>
 </html>

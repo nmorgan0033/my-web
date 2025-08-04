@@ -1,4 +1,6 @@
-
+<?php
+    //include("database.php");
+?>
 <?php
 $message = '';
 $messageClass = '';
