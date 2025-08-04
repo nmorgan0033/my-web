@@ -66,6 +66,16 @@ function toggleMenu() {
 };
 
 
+// Search box js
+document.getElementById("searchForm").addEventListener('submit', function(event) {
+    event.preventDefault();// prevent page reload
+    const query =
+document.getElementById('searchInput').value;
+    alert("You searched for: " + query);
+    // You can replace alert() with logic to search your content
+    });
+
+
 
 
 

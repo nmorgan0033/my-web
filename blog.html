@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My webpage</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mediaqueries.css">
     <link rel="icon" href="images/images.jpeg">
 </head>
 <body>
-    <header>
+    <!--header>
         <nav>
             <a id="openLoginModal" class="login" href="#">
                <img src="images/user-regular-24 (2).png" alt="Placeholder Image">
@@ -20,11 +21,64 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
+    </header-->
+    <header>
+            <!-- DESKTOP MENU -->
+            <nav id="desktop-nav">
+                <a id="openLoginModal" class="login login-btn" href="#">
+                <img src="images/user-regular-24 (2).png" alt="Placeholder Image">
+                </a>
+                <a href="index.html" class="logo">
+                    <h1> LOGO .</h1>
+                </a>
+            
+
+            
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#" class="active">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- HAMBURGER MENU -->
+            <nav id="hamburger-nav">
+                <a id="openLoginModal" class="login login-btn" href="#">
+                <img src="images/user-regular-24 (2).png" alt="Placeholder Image">
+                </a>
+
+                <a href="index.html" class="logo">
+                <h1> LOGO .</h1>
+                </a>
+
+                <div class="hamburger-menu">
+                        <div class="hamburger-icon" onclick="toggleMenu()">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                
+
+                
+                    
+
+                        <div class="menu-links">
+                            <li><a href="index.html" onclick="toggleMenu()">Home</a></li>
+                            <li><a href="#" class="active" onclick="toggleMenu()">Blog</a></li>
+                            <li><a href="about.html" onclick="toggleMenu()">About</a></li>
+                            <li><a href="contact.html" onclick="toggleMenu()">Contact</a></li>
+                        </div>
+                    
+                </div>
+
+                
+            </nav>
     </header>
 
     <!-- BLOG -->
     <section class="blog">
-        <h2>Latest Blog Posts</h2>
+        <h2 style="text-align: center;">Latest Blog Posts</h2>
         <article>
             <a href="post.html">
             <img src="images/barista-training-coffee-shop-business.jpg.webp" alt="Blog Image 1">
@@ -110,8 +164,48 @@
         </a>
     </section>
     
-    <footer>
-        <p>&copy; 2023 My Webpage. All rights reserved.</p>
+    <!-- FOOTER -->
+    <footer><div class="container2">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>About Us</h3>
+                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto atque possimus, labore ea fugit optio dolor soluta hic ex sunt quam esse quod similique aspernatur, non odio alias quia deserunt!</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ol class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="blog.html"><i class="fas fa-chevron-right">Blog</i> </a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i>About</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ol>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ol class="footer-links">
+                        <li><a href=""><i class="fas fa-chevron-right"></i>Testimonials</a></li>
+                        <li><a href=""><i class="fas fa-chevron-right"></i> Property Rentals</a></li>
+                        <li><a href=""><i class="fas fa-chevron-right"></i> Property Valuation</a></li>
+                        <li><a href=""><i class="fas fa-chevron-right"></i> Investment Properties</a></li>
+                        <li><a href=""><i class="fas fa-chevron-right"></i> Property Management</a></li>
+                    </ol>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for the latest property listings and real estate news.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required />
+                        <button type="submit" class="search-boxbtn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 My Webpage. All Rights Reserved.</p>
+            </div>
+        </div>
     </footer>
     <!-- Modal Login Form -->
         

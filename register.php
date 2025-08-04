@@ -6,43 +6,47 @@ $message = '';
 $messageClass = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST["name"] ?? '';
     $email = $_POST["email"] ?? '';
     $password = $_POST["password"] ?? '';
-    $remember = isset($_POST["remember"]) ? true : false;
+    $confirm_password = $_POST["confirm_password"] ?? '';
 
     // Basic validation
-    if (!empty($email) && !empty($password)) {
-        // Check credentials against database
-        $stmt = $conn->prepare("SELECT id, name, email, password FROM users WHERE email = ?");
+    if (empty($name) || empty($email) || empty($password) || empty($confirm_password)) {
+        $message = "Please fill in all fields.";
+        $messageClass = 'error';
+    } elseif ($password !== $confirm_password) {
+        $message = "Passwords do not match.";
+        $messageClass = 'error';
+    } elseif (strlen($password) < 6) {
+        $message = "Password must be at least 6 characters long.";
+        $messageClass = 'error';
+    } else {
+        // Check if email already exists
+        $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
         
         if ($result->num_rows > 0) {
-            $user = $result->fetch_assoc();
-            // Verify password
-            if (password_verify($password, $user['password'])) {
-                $message = "Login successful! Welcome, " . htmlspecialchars($user['name']);
+            $message = "Email already registered. Please use a different email.";
+            $messageClass = 'error';
+        } else {
+            // Hash password and insert user
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            
+            $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
+            $stmt->bind_param("sss", $name, $email, $hashed_password);
+            
+            if ($stmt->execute()) {
+                $message = "Registration successful! You can now login.";
                 $messageClass = 'success';
-                
-                // Start session and store user data
-                session_start();
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['user_name'] = $user['name'];
-                $_SESSION['user_email'] = $user['email'];
-                
             } else {
-                $message = "Invalid email or password.";
+                $message = "Registration failed. Please try again.";
                 $messageClass = 'error';
             }
-        } else {
-            $message = "Invalid email or password.";
-            $messageClass = 'error';
         }
         $stmt->close();
-    } else {
-        $message = "Please fill in all required fields.";
-        $messageClass = 'error';
     }
 }
 ?>
@@ -52,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -75,15 +79,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-bottom: 5px;
             font-weight: bold;
         }
-        input[type="email"], input[type="password"] {
+        input[type="text"], input[type="email"], input[type="password"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 16px;
-        }
-        .checkbox-group {
-            margin-bottom: 20px;
         }
         .btn {
             background-color: #007bff;
@@ -113,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
-        .register-link {
+        .login-link {
             text-align: center;
             margin-top: 20px;
         }
@@ -121,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="container">
-        <h1>Login</h1>
+        <h1>Register</h1>
         
         <?php if (!empty($message)): ?>
             <div class="message <?php echo $messageClass; ?>">
@@ -130,6 +131,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endif; ?>
 
         <form method="POST" action="">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($_POST['name'] ?? ''); ?>" required>
+            </div>
+            
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" required>
@@ -140,19 +146,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" id="password" name="password" required>
             </div>
             
-            <div class="checkbox-group">
-                <label>
-                    <input type="checkbox" name="remember"> Remember me
-                </label>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
             </div>
             
-            <button type="submit" class="btn">Login</button>
+            <button type="submit" class="btn">Register</button>
         </form>
         
-        <div class="register-link">
-            Don't have an account? <a href="register.php">Register here</a>
+        <div class="login-link">
+            Already have an account? <a href="login.php">Login here</a>
         </div>
     </div>
 </body>
-</html>
-
+</html> 
