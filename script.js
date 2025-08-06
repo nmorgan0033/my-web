@@ -214,3 +214,112 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initialize position
     updateSlider();
 });
+
+// Handle login form submission
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData();
+    formData.append('action', 'login');
+    formData.append('email', document.getElementById('loginEmail').value);
+    formData.append('password', document.getElementById('loginPassword').value);
+    
+    fetch('auth_handler.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        const messageDiv = document.getElementById('loginMessage');
+        messageDiv.textContent = data.message;
+        messageDiv.className = 'message ' + (data.success ? 'success' : 'error');
+        messageDiv.style.display = 'block';
+        
+        if (data.success) {
+            // Update UI to show logged in state
+            updateLoginState(data.user);
+            setTimeout(() => {
+                document.getElementById('loginModal').style.display = 'none';
+                document.querySelector('.wrapper').classList.remove('active-popup');
+            }, 2000);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        const messageDiv = document.getElementById('loginMessage');
+        messageDiv.textContent = 'An error occurred. Please try again.';
+        messageDiv.className = 'message error';
+        messageDiv.style.display = 'block';
+    });
+});
+
+// Handle register form submission
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData();
+    formData.append('action', 'register');
+    formData.append('name', document.getElementById('registerName').value);
+    formData.append('email', document.getElementById('registerEmail').value);
+    formData.append('password', document.getElementById('registerPassword').value);
+    
+    fetch('auth_handler.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        const messageDiv = document.getElementById('registerMessage');
+        messageDiv.textContent = data.message;
+        messageDiv.className = 'message ' + (data.success ? 'success' : 'error');
+        messageDiv.style.display = 'block';
+        
+        if (data.success) {
+            // Switch to login form after successful registration
+            setTimeout(() => {
+                document.querySelector('.wrapper').classList.remove('active');
+                document.getElementById('registerMessage').style.display = 'none';
+            }, 2000);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        const messageDiv = document.getElementById('registerMessage');
+        messageDiv.textContent = 'An error occurred. Please try again.';
+        messageDiv.className = 'message error';
+        messageDiv.style.display = 'block';
+    });
+});
+
+// Function to update UI when user is logged in
+function updateLoginState(user) {
+    // Update login buttons to show user info
+    document.querySelectorAll('.login-btn').forEach(btn => {
+        btn.innerHTML = `<span>Welcome, ${user.name}</span>`;
+        btn.onclick = function() {
+            // Show user menu or logout option
+            if (confirm('Do you want to logout?')) {
+                logout();
+            }
+        };
+    });
+}
+
+// Logout function
+function logout() {
+    fetch('logout.php')
+    .then(() => {
+        location.reload();
+    });
+}
+
+// Check if user is already logged in on page load
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('check_login.php')
+    .then(response => response.json())
+    .then(data => {
+        if (data.logged_in) {
+            updateLoginState(data.user);
+        }
+    });
+});

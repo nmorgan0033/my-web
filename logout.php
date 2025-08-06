@@ -1,6 +1,6 @@
 <?php
 session_start();
 session_destroy();
-header("Location: login.php");
-exit();
+header('Content-Type: application/json');
+echo json_encode(['success' => true]);
 ?> 

@@ -1,40 +1,43 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "login_system"; // We'll create this database
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Create database if it doesn't exist
-    $sql = "CREATE DATABASE IF NOT EXISTS $dbname";
-    if ($conn->query($sql) === TRUE) {
-        echo "Database created successfully or already exists<br>";
-    } else {
-        echo "Error creating database: " . $conn->error . "<br>";
-    }
-
-    // Select the database
-    $conn->select_db($dbname);
-
-    // Create users table if it doesn't exist
-    $sql = "CREATE TABLE IF NOT EXISTS users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        email VARCHAR(255) UNIQUE NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        name VARCHAR(100) NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )";
+    // Simple file-based user storage
+    $users_file = "users.json";
     
-    if ($conn->query($sql) === TRUE) {
-        echo "Users table created successfully or already exists<br>";
-    } else {
-        echo "Error creating table: " . $conn->error . "<br>";
+    // Initialize users file if it doesn't exist
+    if (!file_exists($users_file)) {
+        file_put_contents($users_file, json_encode([]));
+    }
+    
+    function getUsers() {
+        global $users_file;
+        $data = file_get_contents($users_file);
+        return json_decode($data, true) ?: [];
+    }
+    
+    function saveUsers($users) {
+        global $users_file;
+        file_put_contents($users_file, json_encode($users, JSON_PRETTY_PRINT));
+    }
+    
+    function addUser($name, $email, $password) {
+        $users = getUsers();
+        $users[] = [
+            'id' => count($users) + 1,
+            'name' => $name,
+            'email' => $email,
+            'password' => password_hash($password, PASSWORD_DEFAULT),
+            'created_at' => date('Y-m-d H:i:s')
+        ];
+        saveUsers($users);
+        return true;
+    }
+    
+    function findUserByEmail($email) {
+        $users = getUsers();
+        foreach ($users as $user) {
+            if ($user['email'] === $email) {
+                return $user;
+            }
+        }
+        return null;
     }
 ?>

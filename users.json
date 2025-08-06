@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "name": "xrs",
+        "email": "danielfaloye8@gmail.com",
+        "password": "$2y$10$dUV7oIg\/ooTNHw5G9e1C2ur2kNds0n8QCUfcolLYn5O6Sibq8VzpC",
+        "created_at": "2025-08-06 15:51:13"
+    },
+    {
+        "id": 2,
+        "name": "morgan",
+        "email": "nmorgan0033@gmail.com",
+        "password": "$2y$10$ZTKGt6ivUmKKg6wO6MIO1.tE7Jm021aL1IgK5X4wYRVCHsiDHJcfm",
+        "created_at": "2025-08-06 16:04:39"
+    },
+    {
+        "id": 3,
+        "name": "rrl",
+        "email": "reachingthelight@outlook.com",
+        "password": "$2y$10$YnteCYQMWQSb9AWQs3spFeHxa2loAKonR8sBbfton2FCwrPdW40nm",
+        "created_at": "2025-08-06 16:06:39"
+    },
+    {
+        "id": 4,
+        "name": "rrl",
+        "email": "reachinglight@outlook.com",
+        "password": "$2y$10$3LCfKx1fDIRtsrB2KdTFl.HvpgtfmWr0P.cJ5eM9VoLi8TmeXHSNy",
+        "created_at": "2025-08-06 16:12:21"
+    }
+]

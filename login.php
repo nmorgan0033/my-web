@@ -1,27 +1,20 @@
 <?php
     include("database.php");
-?>
-<?php
-$message = '';
-$messageClass = '';
+    
+    $message = '';
+    $messageClass = '';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"] ?? '';
-    $password = $_POST["password"] ?? '';
-    $remember = isset($_POST["remember"]) ? true : false;
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $email = $_POST["email"] ?? '';
+        $password = $_POST["password"] ?? '';
+        $remember = isset($_POST["remember"]) ? true : false;
 
-    // Basic validation
-    if (!empty($email) && !empty($password)) {
-        // Check credentials against database
-        $stmt = $conn->prepare("SELECT id, name, email, password FROM users WHERE email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        
-        if ($result->num_rows > 0) {
-            $user = $result->fetch_assoc();
-            // Verify password
-            if (password_verify($password, $user['password'])) {
+        // Basic validation
+        if (!empty($email) && !empty($password)) {
+            // Check credentials
+            $user = findUserByEmail($email);
+            
+            if ($user && password_verify($password, $user['password'])) {
                 $message = "Login successful! Welcome, " . htmlspecialchars($user['name']);
                 $messageClass = 'success';
                 
@@ -36,15 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $messageClass = 'error';
             }
         } else {
-            $message = "Invalid email or password.";
+            $message = "Please fill in all required fields.";
             $messageClass = 'error';
         }
-        $stmt->close();
-    } else {
-        $message = "Please fill in all required fields.";
-        $messageClass = 'error';
     }
-}
 ?>
 
 <!DOCTYPE html>
@@ -113,10 +101,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
-        .register-link {
-            text-align: center;
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
@@ -149,9 +133,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit" class="btn">Login</button>
         </form>
         
-        <div class="register-link">
-            Don't have an account? <a href="register.php">Register here</a>
-        </div>
+        <p style="text-align: center; margin-top: 20px;">
+            <a href="register.php">Create new account</a>
+        </p>
     </div>
 </body>
 </html>

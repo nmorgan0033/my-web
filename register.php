@@ -23,22 +23,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $messageClass = 'error';
     } else {
         // Check if email already exists
-        $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        $existing_user = findUserByEmail($email);
         
-        if ($result->num_rows > 0) {
+        if ($existing_user) {
             $message = "Email already registered. Please use a different email.";
             $messageClass = 'error';
         } else {
-            // Hash password and insert user
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            
-            $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
-            $stmt->bind_param("sss", $name, $email, $hashed_password);
-            
-            if ($stmt->execute()) {
+            // Add new user
+            if (addUser($name, $email, $password)) {
                 $message = "Registration successful! You can now login.";
                 $messageClass = 'success';
             } else {
@@ -46,7 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $messageClass = 'error';
             }
         }
-        $stmt->close();
     }
 }
 ?>

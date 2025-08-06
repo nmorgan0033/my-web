@@ -125,7 +125,7 @@
     </section>
 
     <!-- TESTIMONIALS -->
-     <section class="testimonials">
+     <section id="testimonials" class="testimonials">
         <h2>Testimonials</h2>
         <div class="testimonial-slider">
         <button class="arrow left" id="prevSlide">&#8592;</button>
@@ -226,7 +226,7 @@
                 <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ol class="footer-links">
-                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
                         <li><a href="blog.html"><i class="fas fa-chevron-right">Blog</i> </a></li>
                         <li><a href="about.html"><i class="fas fa-chevron-right"></i>About</a></li>
                         <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
@@ -236,7 +236,7 @@
                 <div class="footer-col">
                     <h3>Services</h3>
                     <ol class="footer-links">
-                        <li><a href=""><i class="fas fa-chevron-right"></i>Testimonials</a></li>
+                        <li><a href="#testimonials"><i class="fas fa-chevron-right"></i>Testimonials</a></li>
                         <li><a href=""><i class="fas fa-chevron-right"></i> Property Rentals</a></li>
                         <li><a href=""><i class="fas fa-chevron-right"></i> Property Valuation</a></li>
                         <li><a href=""><i class="fas fa-chevron-right"></i> Investment Properties</a></li>
@@ -288,26 +288,22 @@
 
 
 <div id="loginModal" class="modal">
-
   <div class="wrapper">
-
     <div class="modal-content">
-
-
      <span class="icon-close" id="closeLoginModal">&times;</span>
 
           <div class='form-box login'>
             <h2>Login</h2>
-            <form action='login.php' method='post'>
+            <form id="loginForm">
               <div class='input-box'>
                 <span class='icon'><img src="images/Icons/envelope-solid-24.png" alt="email" /></span>
-                <input type='email' name="email" id="email" required />
-                <label for="email" >Email</label>
+                <input type='email' name="email" id="loginEmail" required />
+                <label for="loginEmail">Email</label>
               </div>
               <div class='input-box'>
                 <span class='icon'><img src="images/Icons/lock-alt-solid-24.png" alt="lock" /></span>
-                <input type='password' name="password" id="password" required />
-                <label for="password">Password</label>
+                <input type='password' name="password" id="loginPassword" required />
+                <label for="loginPassword">Password</label>
               </div>
               <div class='remember-forgot'>
                 <label><input type='checkbox' /> Remember me</label>
@@ -318,38 +314,39 @@
                 <p>Don't have an account? <a href='#' class='register-link'>Register</a></p>
               </div>
             </form>
+            <div id="loginMessage" class="message" style="display: none;"></div>
           </div>
 
           <div class='form-box register'>
             <h2>Registration</h2>
-            <form action='#'>
+            <form id="registerForm">
               <div class='input-box'>
                 <span class='icon'><img src="images/Icons/user-solid-24.png" alt="user" /></span>
-                <input type='text' required />
-                <label>Username</label>
+                <input type='text' name="name" id="registerName" required />
+                <label for="registerName">Full Name</label>
               </div>
               <div class='input-box'>
                 <span class='icon'><img src="images/Icons/envelope-solid-24.png" alt="email" /></span>
-                <input type='email' required />
-                <label>Email</label>
+                <input type='email' name="email" id="registerEmail" required />
+                <label for="registerEmail">Email</label>
               </div>
               <div class='input-box'>
                 <span class='icon'><img src="images/Icons/lock-alt-solid-24.png" alt="lock" /></span>
-                <input type='password' required />
-                <label>Password</label>
+                <input type='password' name="password" id="registerPassword" required />
+                <label for="registerPassword">Password</label>
               </div>
-              <div className='remember-forgot'>
-                <label><input type='checkbox' /> I agree to the terms & conditions</label>
+              <div class='remember-forgot'>
+                <label><input type='checkbox' required /> I agree to the terms & conditions</label>
               </div>
               <button type='submit' class='btn'>Register</button>
               <div class='login-register'>
                 <p>Already have an account? <a href='#' class='login-link'>Login</a></p>
               </div>
             </form>
+            <div id="registerMessage" class="message" style="display: none;"></div>
           </div>
 
     </div>
-
  </div>
 </div>
 
